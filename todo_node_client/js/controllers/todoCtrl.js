@@ -90,7 +90,9 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, $log, todoSt
         $log.info('remove data', todo);
         todos.splice(todos.indexOf(todo), 1);
         todoStorage.destroy({key: todo._key}, function () {
-            $scope.remainingCount -= 1;
+            if(!todo.completed) {
+                $scope.remainingCount -= 1;
+            }
         });
     };
 
@@ -125,10 +127,9 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, $log, todoSt
     $scope.markAll = function (done) {
         todos.forEach(function (todo) {
             todo.completed = done;
-        });
-        $scope.remainingCount = done ? 0 : todos.length;
-        todos.forEach(function (todo) {
             todoStorage.update(todo);
         });
+
+        $scope.remainingCount = done ? 0 : todos.length;
     };
 });
