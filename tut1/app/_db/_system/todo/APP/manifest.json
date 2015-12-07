@@ -1,0 +1,15 @@
+{
+  "name": "todo-example",
+  "description": "simple todo backend",
+  "author": "Ferron Smith",
+  "version": "0.0.1",
+  "license": "MIT",
+  "controllers": {
+    "/todos": "controllers/todos.js"
+  },
+  "scripts": {
+    "setup": "scripts/setup.js",
+    "teardown": "scripts/teardown.js"
+  },
+  "tests": "test/**/*.js"
+}
